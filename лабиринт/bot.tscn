@@ -1,0 +1,151 @@
+[gd_scene load_steps=21 format=3 uid="uid://bijr08o0efyef"]
+
+[ext_resource type="Script" path="res://bot.gd" id="1_qkd0w"]
+[ext_resource type="Texture2D" uid="uid://c4amcr708bg7d" path="res://resourses_maze2/Enemies/Mushroom/Run (32x32).png" id="1_y5lhk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dg7af"]
+radius = 16.1245
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ltqw"]
+atlas = ExtResource("1_y5lhk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmrm1"]
+atlas = ExtResource("1_y5lhk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5fe6"]
+atlas = ExtResource("1_y5lhk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u832q"]
+atlas = ExtResource("1_y5lhk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1dda"]
+atlas = ExtResource("1_y5lhk")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8osu"]
+atlas = ExtResource("1_y5lhk")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2jld"]
+atlas = ExtResource("1_y5lhk")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omuly"]
+atlas = ExtResource("1_y5lhk")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ug8t7"]
+atlas = ExtResource("1_y5lhk")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxurr"]
+atlas = ExtResource("1_y5lhk")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmse3"]
+atlas = ExtResource("1_y5lhk")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e61qm"]
+atlas = ExtResource("1_y5lhk")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycp6u"]
+atlas = ExtResource("1_y5lhk")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egx5g"]
+atlas = ExtResource("1_y5lhk")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ex21x"]
+atlas = ExtResource("1_y5lhk")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dvgy"]
+atlas = ExtResource("1_y5lhk")
+region = Rect2(480, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ixp0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ltqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmrm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5fe6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u832q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1dda")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8osu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2jld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omuly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ug8t7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxurr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmse3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e61qm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycp6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egx5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ex21x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dvgy")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[node name="bot" type="CharacterBody2D"]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_qkd0w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dg7af")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_5ixp0")
+animation = &"run"
+autoplay = "run"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="NavigationAgent2D2" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+debug_enabled = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

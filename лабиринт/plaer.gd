@@ -19,7 +19,13 @@ func _physics_process(delta: float) -> void:
 		speed=50
 	if stamina<2:
 		speed=50
-	print(stamina)
+	for i in get_slide_collision_count():
+		var obj=get_slide_collision(i).get_collider()
+		if obj is CharacterBody2D:
+			set_physics_process(false)
+			$AnimatedSprite2D.play("die")
+			await get_tree().create_timer(1.5).timeout
+			$"../CanvasLayer/MenuBar2".visible=true
 	move_and_slide()
 	if Input_vector==Vector2(0,0):
 		$AnimatedSprite2D.play("Stop")
