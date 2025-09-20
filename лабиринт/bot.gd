@@ -1,5 +1,5 @@
 extends CharacterBody2D
-var speed=75
+var speed=50
 @export var plaer:Node2D
 @onready var nav_agent:= $NavigationAgent2D2 as NavigationAgent2D
 func _physics_process(delta: float) -> void:

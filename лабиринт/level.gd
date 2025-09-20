@@ -19,5 +19,6 @@ func _process(delta: float) -> void:
 		var sec=int(time)%60
 	
 		$CanvasLayer/Label.text=str(min,":",sec)
+		$CanvasLayer/Label2.text=str("key ",Global.key,"/3")
 	if time<=0:
 		$CanvasLayer/MenuBar2.visible=true
